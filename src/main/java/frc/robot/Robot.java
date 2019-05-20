@@ -12,27 +12,14 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.*;
 import frc.robot.util.*;
-import frc.robot.commands.drivebaseCommands.HolonomicDriveCommand;
-
-//import net.schmizz.sshj.SSHClient;
-//import net.schmizz.sshj.connection.channel.direct.Session;
-
-import frc.robot.util.constants.OIConstants;
-import frc.robot.util.constants.Constants;
-
-
-import com.revrobotics.ControlType;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,12 +32,10 @@ public class Robot extends TimedRobot
 {
     // SUBSYSTEMS
     //public static MechanumDriveBase mechanumDriveBase;
-    public static SwerveDriveBase swerveDriveBase;
+    public static Level_1 level_1;
 
     public static PowerDistributionPanel pdp;
     public static OI oi;
-
-    private Thread loggingThread;
   
     Command m_autonomousCommand;
     SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -62,61 +47,12 @@ public class Robot extends TimedRobot
     @Override
     public void robotInit() 
     {
-        //SUBSYSTEMS
+        //SUBSYSTEMS INIT
         //mechanumDriveBase = new MechanumDriveBase();
-        //swerveDriveBase = new SwerveDriveBase();
-
-        //pdp = new PowerDistributionPanel();
-        //oi = new OI();
-
-        /*//start logging thread
-        loggingThread = new Thread(() -> {
-            Logger logging = new Logger();
-            while (!Thread.interrupted()) {
-                logging.run();
-            }
-        });
-
-        loggingThread.start();
-        */
         
-        /*//init USB CAMERA 1
-        UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
-        camera.setResolution(160, 120);
-        camera.setFPS(15);
 
-        //init USB CAMERA 2
-        UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(1);
-        camera1.setResolution(160, 120);
-        camera1.setFPS(10);*/
-
-        //Startup LED code on Raspbarry Pi
-        /*try {
-            final SSHClient ssh = new SSHClient();
-
-            //TODO: put in the correct ip for the PI 
-            ssh.connect("10.40.89.xxx", 22);
-
-            try {
-                ssh.authPassword("pi", "raspberry");
-                
-                final Session session = ssh.startSession();
-                try {
-                    session.exec("sudo examples-api-use/scrolling-text-example --led-rows=32 --led-cols=64 -f fonts/8x13B.bdf " + 
-                        "-s 2 -y 8 --led-slowdown-gpio=1 STEALTH 4089");
-                    //final Command cmd = session.exec("echo raspberry | sudo -S reboot");
-                } finally {
-                    session.close();
-                }
-            } finally {
-                ssh.disconnect();
-                ssh.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            System.out.println("Error Couldn't Start LEDs on Raspberry PI.\nERROR : " + e.getClass().getName() + ", " + e.getMessage());
-        }*/
+        pdp = new PowerDistributionPanel();
+        oi = new OI();
 
 
         //AUTO CHOOSER

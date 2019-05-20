@@ -10,8 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.drivebaseCommands.ResetDrivetrainGyroCommand;
-import frc.robot.util.constants.OIConstants;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -46,23 +44,25 @@ public class OI
     // Start the command when the button is released and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-  
-    public Joystick driveJoystick;
 
-    public Button slowButton;
-    public Button fastButton;
-    public Button resetHeadingButton;
+    
+  
+    // public Joystick driveJoystick;
+
+    // public Button slowButton;
+    // public Button fastButton;
+    // public Button resetHeadingButton;
 
   
     OI()
     {
-        driveJoystick = new Joystick(0);
+        // driveJoystick = new Joystick(0);
 
-        slowButton = new JoystickButton(driveJoystick, OIConstants.SLOW_BUTTON);
-        fastButton = new JoystickButton(driveJoystick, OIConstants.FAST_BUTTON);
-        resetHeadingButton = new JoystickButton(driveJoystick, OIConstants.RESET_HEADING_BUTTON);
+        // slowButton = new JoystickButton(driveJoystick, OIConstants.SLOW_BUTTON);
+        // fastButton = new JoystickButton(driveJoystick, OIConstants.FAST_BUTTON);
+        // resetHeadingButton = new JoystickButton(driveJoystick, OIConstants.RESET_HEADING_BUTTON);
 
-        resetHeadingButton.whenPressed(new ResetDrivetrainGyroCommand(Robot.swerveDriveBase));
+        // resetHeadingButton.whenPressed(new ResetDrivetrainGyroCommand(Robot.swerveDriveBase));
     }
 
 

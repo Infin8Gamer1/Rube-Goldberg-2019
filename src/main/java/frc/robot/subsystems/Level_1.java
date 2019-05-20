@@ -7,21 +7,29 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public abstract class Drivetrain extends Subsystem {
-  private double speedMultiplier = 0.7;
+public class Level_1 extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
 
-  protected abstract void initDefaultCommand();
+  private final Servo GolfBallDroper;
+  private final AnalogInput LightSensor;
 
-  public double getSpeedMultiplier() {
-    return speedMultiplier;
+  public Level_1() {
+    GolfBallDroper = new Servo(0);
+
+    LightSensor = new AnalogInput(3);
   }
 
-  public void setSpeedMultiplier(double speedMultiplier){
-    this.speedMultiplier = speedMultiplier;
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
   }
 }
