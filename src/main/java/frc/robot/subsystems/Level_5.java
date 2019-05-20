@@ -7,38 +7,46 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.Servo;
+import java.util.function.DoubleSupplier;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.util.PIDexecutor;
 
 /**
  * Add your docs here.
  */
-public class Level_1 extends Subsystem {
+public class Level_5 extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private final Servo GolfBallDroper;
-  private final AnalogInput LightSensor;
-  private final double LightVoltageThreshhold = 0.4f;
+  private final WPI_TalonSRX FlagRaiseMotor;
+  private final DigitalInput MagnetSensor;
 
-  public Level_1() {
-    GolfBallDroper = new Servo(0);
+  private static PIDexecutor FlagPID;
 
-    LightSensor = new AnalogInput(3);
+  public Level_5() {
+    FlagRaiseMotor = new WPI_TalonSRX(3);
+
+    MagnetSensor = new DigitalInput(1);
+
+    //                         KP   KI  KD
+    FlagPID = new PIDexecutor(0.2, 0.0, 0.01, FlagRaiseMotor.getSelectedSensorPosition(0), new DoubleSupplier()
+    {
+        @Override
+        public double getAsDouble()
+        {
+            return FlagRaiseMotor.getSelectedSensorPosition(0);
+        }
+    });
   }
 
-  public void DropBall(){
-    GolfBallDroper.set(1.0);
+  public boolean GetMagnetSensor() {
+    return MagnetSensor.get();
   }
 
-  public void HoldBall(){
-    GolfBallDroper.set(0.5);
-  }
-
-  public boolean CheckLightSensor(){
-    return (LightSensor.getVoltage() < LightVoltageThreshhold);
-  }
 
   @Override
   public void initDefaultCommand() {
