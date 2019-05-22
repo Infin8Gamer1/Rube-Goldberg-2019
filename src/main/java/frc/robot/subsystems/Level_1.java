@@ -40,6 +40,10 @@ public class Level_1 extends Subsystem {
     return (LightSensor.getVoltage() <= LightVoltageThreshhold);
   }
 
+  public double GetLightSensor(){
+    return LightSensor.getVoltage();
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Auto;
 import frc.robot.subsystems.*;
 
@@ -62,6 +63,10 @@ public class Robot extends TimedRobot
         // SmartDashboard.putNumber("Lifter/CurrentL", pdp.getCurrent(?));
         // SmartDashboard.putNumber("Lifter/CurrentR", pdp.getCurrent(?));
         // SmartDashboard.putNumber("Lifter/CurrentB", pdp.getCurrent(?));
+
+        SmartDashboard.putNumber("LightSensorValue", level_1.GetLightSensor());
+        SmartDashboard.putBoolean("TiltSwitch", level_3.getTiltSwitch());
+        SmartDashboard.putBoolean("MagnetSwitch", level_5.GetMagnetSensor());
     }
   
     /**
