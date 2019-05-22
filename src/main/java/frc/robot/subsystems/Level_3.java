@@ -49,11 +49,11 @@ public class Level_3 extends Subsystem {
   }
 
   public void FlipCar() {
-    CarKnocker.set(1.0);
+    CarKnocker.set(0.8);
   }
 
   public void UnFlipCar() {
-    CarKnocker.set(0.5);
+    CarKnocker.set(0.2);
   }
 
   @Override

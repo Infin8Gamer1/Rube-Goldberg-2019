@@ -29,7 +29,7 @@ public class Robot extends TimedRobot
     public static Level_3 level_3;
     public static Level_5 level_5;
 
-    public static PowerDistributionPanel pdp;
+    //public static PowerDistributionPanel pdp;
   
     Command m_autonomousCommand;
   
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot
         level_3 = new Level_3();
         level_5 = new Level_5();
 
-        pdp = new PowerDistributionPanel();
+        //pdp = new PowerDistributionPanel();
     }
   
     /**

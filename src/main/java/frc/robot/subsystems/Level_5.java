@@ -25,42 +25,42 @@ public class Level_5 extends Subsystem {
   public final WPI_TalonSRX FlagRaiseMotor;
   private final DigitalInput MagnetSensor;
 
-  private static PIDexecutor FlagPID;
+  //private static PIDexecutor FlagPID;
 
   public Level_5() {
-    FlagRaiseMotor = new WPI_TalonSRX(3);
+    FlagRaiseMotor = new WPI_TalonSRX(10);
 
     MagnetSensor = new DigitalInput(1);
 
     //                         KP   KI  KD                Starting Position
-    FlagPID = new PIDexecutor(0.2, 0.0, 0.01, FlagRaiseMotor.getSelectedSensorPosition(0), new DoubleSupplier()
+    /*FlagPID = new PIDexecutor(0.2, 0.0, 0.01, FlagRaiseMotor.getSelectedSensorPosition(0), new DoubleSupplier()
     {
         @Override
         public double getAsDouble()
         {
             return FlagRaiseMotor.getSelectedSensorPosition(0);
         }
-    });
+    });*/
   }
 
-  public int getFlagCurrentPosition() {
+  /*public int getFlagCurrentPosition() {
     return FlagRaiseMotor.getSelectedSensorPosition(0);
   }
 
   public void SetFlagTarget(int Target){
     FlagPID.setTarget(Target);
-  }
+  }*/
 
   public boolean GetMagnetSensor() {
     return MagnetSensor.get();
   }
 
-  @Override
+  /*@Override
   public void periodic() {
     super.periodic();
 
     FlagRaiseMotor.set(FlagPID.run());
-  }
+  }*/
 
 
   @Override

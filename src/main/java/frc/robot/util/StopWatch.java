@@ -89,7 +89,7 @@ public class StopWatch
      */
     public static long now()
     {
-        return System.nanoTime() / 1000000;
+        return System.currentTimeMillis();//nanoTime() / 1000000;
     }
 
     /**

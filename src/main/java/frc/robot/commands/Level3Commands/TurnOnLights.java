@@ -8,6 +8,7 @@
 package frc.robot.commands.Level3Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.util.StopWatch;
 
@@ -25,7 +26,10 @@ public class TurnOnLights extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    SmartDashboard.putNumber("Stage", 3);
     Robot.level_3.TurnLightsOn();
+    
+    timer.reset();
   }
 
   // Called repeatedly when this Command is scheduled to run

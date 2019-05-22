@@ -8,6 +8,7 @@
 package frc.robot.commands.Level1Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.util.StopWatch;
 
@@ -19,18 +20,21 @@ public class DropGolfBall extends Command {
     // eg. requires(chassis);
     requires(Robot.level_1);
 
-    timer = new StopWatch(750);
+    timer = new StopWatch(1000);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    SmartDashboard.putNumber("Stage", 1);
+    timer.reset();
     Robot.level_1.DropBall();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

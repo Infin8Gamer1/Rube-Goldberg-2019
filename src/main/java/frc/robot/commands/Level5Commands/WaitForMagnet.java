@@ -8,6 +8,7 @@
 package frc.robot.commands.Level5Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class WaitForMagnet extends Command {
@@ -20,6 +21,7 @@ public class WaitForMagnet extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    SmartDashboard.putNumber("Stage", 5);
   }
 
   // Called repeatedly when this Command is scheduled to run

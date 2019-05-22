@@ -20,7 +20,7 @@ public class Level_1 extends Subsystem {
 
   private final Servo GolfBallDroper;
   private final AnalogInput LightSensor;
-  private final double LightVoltageThreshhold = 0.4f;
+  private final double LightVoltageThreshhold = 2.5f;
 
   public Level_1() {
     GolfBallDroper = new Servo(0);
