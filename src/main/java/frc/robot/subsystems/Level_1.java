@@ -37,7 +37,7 @@ public class Level_1 extends Subsystem {
   }
 
   public boolean CheckLightSensor(){
-    return (LightSensor.getVoltage() < LightVoltageThreshhold);
+    return (LightSensor.getVoltage() <= LightVoltageThreshhold);
   }
 
   @Override

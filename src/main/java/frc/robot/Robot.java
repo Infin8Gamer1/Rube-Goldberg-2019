@@ -7,19 +7,12 @@
 
 package frc.robot;
 
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANPIDController;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-
+import frc.robot.commands.Auto;
 import frc.robot.subsystems.*;
-import frc.robot.util.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,14 +24,13 @@ import frc.robot.util.*;
 public class Robot extends TimedRobot 
 {
     // SUBSYSTEMS
-    //public static MechanumDriveBase mechanumDriveBase;
     public static Level_1 level_1;
+    public static Level_3 level_3;
+    public static Level_5 level_5;
 
     public static PowerDistributionPanel pdp;
-    public static OI oi;
   
     Command m_autonomousCommand;
-    SendableChooser<Command> m_chooser = new SendableChooser<>();
   
     /**
      * This function is run when the robot is first started up and should be
@@ -48,16 +40,11 @@ public class Robot extends TimedRobot
     public void robotInit() 
     {
         //SUBSYSTEMS INIT
-        //mechanumDriveBase = new MechanumDriveBase();
-        
+        level_1 = new Level_1();
+        level_3 = new Level_3();
+        level_5 = new Level_5();
 
         pdp = new PowerDistributionPanel();
-        oi = new OI();
-
-
-        //AUTO CHOOSER
-        //m_chooser.setDefaultOption("Default Auto", new HolonomicDriveCommand(swerveDriveBase));
-        //SmartDashboard.putData("Auto mode", m_chooser);
     }
   
     /**
@@ -111,7 +98,7 @@ public class Robot extends TimedRobot
     @Override
     public void autonomousInit() 
     {
-        m_autonomousCommand = m_chooser.getSelected();
+        m_autonomousCommand = new Auto();
     
         /*
          * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -119,6 +106,12 @@ public class Robot extends TimedRobot
          * = new MyAutoCommand(); break; case "Default Auto": default:
          * autonomousCommand = new ExampleCommand(); break; }
          */
+
+         //reset servos and turn lights off
+         level_1.HoldBall();
+         level_3.TurnLightsOff();
+         level_3.UnFlipCar();
+         
     
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) 
@@ -136,6 +129,7 @@ public class Robot extends TimedRobot
         Scheduler.getInstance().run();
     }
   
+    //#region Mode Teleop
     @Override
     public void teleopInit() 
     {
@@ -157,10 +151,10 @@ public class Robot extends TimedRobot
     {
         Scheduler.getInstance().run();
     }
+    //#endregion Mode Teleop
 
-    CANSparkMax sparkTest;
-    CANPIDController sparkPID;
-    CANEncoder sparkTestEncoder;
+
+    //#region Mode Test
 
     /**
      * This function is called once each time the robot enters test mode
@@ -168,23 +162,7 @@ public class Robot extends TimedRobot
     @Override
     public void testInit() 
     {
-        sparkTest = new CANSparkMax(13, MotorType.kBrushless);
-
-        //sparkTest.restoreFactoryDefaults();
-
-        sparkTestEncoder = sparkTest.getEncoder();
-
-        sparkTest.setMotorType(MotorType.kBrushless);
-
-        sparkPID = sparkTest.getPIDController();
-
-        //sparkPID.setReference(0, ControlType.kPosition);
-        //set PID values TODO : Tune These Values
-        sparkPID.setP(2);
-        sparkPID.setI(0);
-        sparkPID.setD(0);
-
-        //SmartDashboard.putNumber("Testing SPEED", 0.5);
+        
     }
   
     /**
@@ -193,11 +171,8 @@ public class Robot extends TimedRobot
     @Override
     public void testPeriodic() 
     {
-        //sparkTest.set(SmartDashboard.getNumber("Testing SPEED", 0.0));
-        sparkTest.set(100);
-
-        //sparkPID.setReference(10, ControlType.kPosition);
-
-        System.out.println(sparkTest.get() + " | " + sparkTestEncoder.getPosition());
+        
     }
+
+    //#endregion Mode Test
 }

@@ -32,11 +32,11 @@ public class Level_3 extends Subsystem {
     CarKnocker = new Servo(1);
   }
 
-  public void TurnLightsOn(){
+  public void TurnLightsOn() {
     ArduinoSerialPort.writeString("On\n");
   }
 
-  public void TurnLightsOff(){
+  public void TurnLightsOff() {
     ArduinoSerialPort.writeString("Off\n");
   }
 
