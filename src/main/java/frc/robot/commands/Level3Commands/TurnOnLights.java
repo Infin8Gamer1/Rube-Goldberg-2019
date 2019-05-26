@@ -20,7 +20,7 @@ public class TurnOnLights extends Command {
     // eg. requires(chassis);
     requires(Robot.level_3);
 
-    timer = new StopWatch(7500);
+    timer = new StopWatch(10000);
   }
 
   // Called just before this Command runs the first time
@@ -53,5 +53,6 @@ public class TurnOnLights extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

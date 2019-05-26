@@ -29,11 +29,11 @@ public class Level_1 extends Subsystem {
   }
 
   public void DropBall(){
-    GolfBallDroper.set(1.0);
+    GolfBallDroper.set(0.0);
   }
 
   public void HoldBall(){
-    GolfBallDroper.set(0.5);
+    GolfBallDroper.set(0.4);
   }
 
   public boolean CheckLightSensor(){

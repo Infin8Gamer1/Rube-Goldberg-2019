@@ -25,7 +25,7 @@ public class Level_3 extends Subsystem {
   
 
   public Level_3() {
-    TiltSwitch = new DigitalInput(0);
+    TiltSwitch = new DigitalInput(2);
 
     ArduinoSerialPort = new SerialPort(9600, SerialPort.Port.kUSB);
 
@@ -49,11 +49,11 @@ public class Level_3 extends Subsystem {
   }
 
   public void FlipCar() {
-    CarKnocker.set(0.8);
+    CarKnocker.set(0.15);
   }
 
   public void UnFlipCar() {
-    CarKnocker.set(0.2);
+    CarKnocker.set(0.29);
   }
 
   @Override
