@@ -5,35 +5,29 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Level5Commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.util.StopWatch;
 
-public class RaiseFlag extends Command {
+public class TimedDelay extends Command {
   private StopWatch timer;
 
-  public RaiseFlag() {
+  public TimedDelay(long waitTime) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.level_5);
-
-    timer = new StopWatch(5750);
+    timer = new StopWatch(waitTime);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    SmartDashboard.putNumber("Stage", 6);
     timer.reset();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.level_5.FlagRaiseMotor.set(-0.75);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -45,13 +39,11 @@ public class RaiseFlag extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.level_5.FlagRaiseMotor.set(0.0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

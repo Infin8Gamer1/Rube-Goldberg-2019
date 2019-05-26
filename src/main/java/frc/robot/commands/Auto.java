@@ -34,6 +34,7 @@ public class Auto extends CommandGroup {
     // Command1 and Command2 will run in parallel.
 
     addSequential(new WaitForCar()); //Holds
+    addSequential(new TimedDelay(500));
     addSequential(new DropGolfBall());
     addSequential(new WaitForTiltSwitch()); //Holds
     addSequential(new TurnOnLights());
