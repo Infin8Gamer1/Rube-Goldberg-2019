@@ -12,15 +12,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.util.StopWatch;
 
-public class RaiseFlag extends Command {
+public class LowerFlag extends Command {
   private StopWatch timer;
 
-  public RaiseFlag() {
+  public LowerFlag() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.level_5);
 
-    timer = new StopWatch(5900);
+    timer = new StopWatch(5850);
   }
 
   // Called just before this Command runs the first time
@@ -33,7 +33,7 @@ public class RaiseFlag extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.level_5.FlagRaiseMotor.set(-0.75);
+    Robot.level_5.FlagRaiseMotor.set(0.75);
   }
 
   // Make this return true when this Command no longer needs to run execute()

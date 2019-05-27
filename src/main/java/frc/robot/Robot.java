@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Auto;
+import frc.robot.commands.Level5Commands.LowerFlag;
 import frc.robot.subsystems.*;
 
 /**
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot
     //public static PowerDistributionPanel pdp;
   
     Command m_autonomousCommand;
+    Command m_resetCommand;
   
     /**
      * This function is run when the robot is first started up and should be
@@ -103,6 +105,15 @@ public class Robot extends TimedRobot
     @Override
     public void autonomousInit() 
     {
+        // This makes sure that the autonomous stops running when
+        // teleop starts running. If you want the autonomous to
+        // continue until interrupted by another command, remove
+        // this line or comment it out.
+        if (m_resetCommand != null) 
+        {
+            m_resetCommand.cancel();
+        }
+        
         m_autonomousCommand = new Auto();
     
         /*
@@ -146,6 +157,28 @@ public class Robot extends TimedRobot
         {
             m_autonomousCommand.cancel();
         }
+
+
+        m_resetCommand = new LowerFlag();
+    
+        /*
+         * String autoSelected = SmartDashboard.getString("Auto Selector",
+         * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
+         * = new MyAutoCommand(); break; case "Default Auto": default:
+         * autonomousCommand = new ExampleCommand(); break; }
+         */
+
+         //reset servos and turn lights off
+         level_1.HoldBall();
+         level_3.TurnLightsOff();
+         level_3.UnFlipCar();
+         
+    
+        // schedule the autonomous command (example)
+        if (m_resetCommand != null) 
+        {
+            m_resetCommand.start();
+        }
     }
   
     /**
@@ -157,27 +190,4 @@ public class Robot extends TimedRobot
         Scheduler.getInstance().run();
     }
     //#endregion Mode Teleop
-
-
-    //#region Mode Test
-
-    /**
-     * This function is called once each time the robot enters test mode
-     */
-    @Override
-    public void testInit() 
-    {
-        
-    }
-  
-    /**
-     * This function is called periodically during test mode.
-     */
-    @Override
-    public void testPeriodic() 
-    {
-        
-    }
-
-    //#endregion Mode Test
 }
